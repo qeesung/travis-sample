@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
 
 install:
-  - echo "Override default Travis install step to avoid unnecessary './gradlew assemble'. hello"
+  - echo "Override default Travis install step to avoid unnecessary './gradlew assemble'. hello world"
