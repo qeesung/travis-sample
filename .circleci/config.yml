@@ -1,26 +1,20 @@
 version: 2
 jobs:
-  shellcheck:
+  build:
     docker:
-      - image: koalaman/shellcheck-alpine:stable
+      - image: circleci/<language>:<version TAG>
     steps:
       - checkout
-      - run:
-          name: Check Scripts
-          command: |
-            find . -type f -name '*.sh' | wc -l
-            find . -type f -name '*.sh' | xargs shellcheck --external-sources
-  build-job:
-    ...
-
+      - run: env
+  test:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: env
 workflows:
   version: 2
-  check-build:
+  build_and_test:
     jobs:
-      - shellcheck
-      - build-job:
-          requires:
-            - shellcheck # only run build-job once shellcheck has run
-          filters:
-            branches:
-              only: master # only run build-job on master branch
+      - build
+      - test
