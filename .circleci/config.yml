@@ -11,7 +11,7 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
-      - run: env && echo "username is ${username}"
+      - run: env && echo "username is ${username}" && echo qeesung && echo xxxxung
 workflows:
   version: 2
   build_and_test:
