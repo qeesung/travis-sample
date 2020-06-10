@@ -11,4 +11,13 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-      - sh: env
+      - hello：
+          docker:
+            - image: koalaman/shellcheck-alpine:stable
+          steps:
+            - checkout
+            - run:
+                name: Check Scripts
+                command: |
+                  find . -type f -name '*.sh' | wc -l
+                  find . -type f -name '*.sh' | xargs shellcheck --external-sources
